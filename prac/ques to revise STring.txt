@@ -1,0 +1,347 @@
+ques to revise
+STring 
+1.49. Group Anagrams
+2.38. Count and Say
+3.1047. Remove All Adjacent Duplicates In String/ stack- remember sb.length()>0 && sb.charAt(sb.length()-1) ==s.charAt(i)
+Arrays
+1.34. Find First and Last Position of Element in Sorted Array- remember int result[]={-1,-1};if(result[0]==-1)
+                result[0]=i;
+                result[1]=i; 
+Sliding window// only work for positive ele array
+1.subarraysWithKDistinct_992 /// exactly k = atMost(k) - atMost(k-1)// same count_No_of_Nice_subarray_1248
+2.Count_subarrays_with_at_most_K_distinct_integers 
+4.find_All_Anagram_438// Permutation_in_String_567
+5.Longest_Repeating_character_Replacement_424
+6.Minimum Window Substring_76 // have==need
+7. fruits basket/Longest subarray with at most k distinct elements
+8.1004. Max Consecutive Ones III//need to track count of zeros in window, not maxFreq!//You can flip at most k zeros. So window is valid as long as zerosCount <= k.
+When zerosCount > k → too many zeros → shrink!
+
+Sliding Window Master Cheat Sheet:
+Fixed Window:
+Window size k is given
+Build first window (0 to k-1), then slide: add right, remove left
+643, 1343, 1456, 1876, 438-567-same, MaxSumK
+
+Variable Window — Maximize:
+Expand r always, shrink l when condition242 breaks
+Record answer after window is valid (outside inner while)
+3, 424, 904
+
+Variable Window — Minimize:
+Expand r until condition met, then shrink l in while loop
+Record answer during shrinking
+209, 76
+
+Variable Window — Count:
+exactly(k) = atMost(k) - atMost(k-1)
+Count subarrays at each step: count += r - l + 1
+992, 1248
+
+Two pointer// specially in place 
+1.move zero-283
+26. Remove Duplicates from Sorted Array
+2.26. Remove Duplicates from Sorted Array-When nums[r] != nums[l] → new unique found → l++, nums[l] = nums[r]
+3.max water content
+4.3Sum / 3Sum closest same logic just diff in contion
+
+Two Pointers Master Cheat Sheet:
+
+Same-direction (both start from left):
+One pointer scans, the other marks a position
+283 (Move Zeroes): r scans, l marks next non-zero position, swap when arr[r] != 0 //26. Remove Duplicates from Sorted Array
+
+
+Works on sorted arrays or when you need to compare extremes
+5 (Container): area = min(h[l], h[r]) * (r-l), move shorter line
+6 (3Sum): sort, fix i, two pointers find pair, skip duplicates after finding triplet
+7 (3Sum Closest): same as 15, track closestSum with Math.abs(target - sum)
+8.88. Merge Sorted Array
+9.5. Longest Palindromic Substring
+
+Prefix Sum
+negative numbers,And specifically for divisibility — Prefix Sum + Modulo + HashMap
+3 things to always remember:
+Size n+1, prefix[0]=0
+Query: prefix[r+1] - prefix[l]
+For counting subarrays: check before insert, initialize map(0,1)
+
+1.SubarraySumEqualsK_560 
+2.525. Contiguous Array
+3.LC 974 — Subarray Sums Divisible by K
+4.Given array of integers, find if there exists 
+a subarray with sum = 0.
+nums = [4, 2, -3, 1, 6] → true (2,-3,1)
+nums = [4, 2, 1, 6] → false
+Prefix Sum Master Cheat Sheet:
+
+Core idea: sum(l, r) = prefix[r] - prefix[l-1]
+5.53. Maximum Subarray(kaden's)
+6.238 Product of Array except self
+
+Three variations with HashMap:
+
+Problem	Map stores	Key	Looking for
+560 (count, sum = k)	prefixSum → count	prefixSum	prefixSum - k in map
+525 (max len, sum = 0)	prefixSum → first index	prefixSum	same prefixSum seen before
+974 (count, sum % k = 0)	remainder → count	prefixSum % k	same remainder seen before
+Always remember:
+
+Initialize map with (0, 1) for count problems, (0, -1) for length problems
+Negative mod fix in Java: ((sum % k) + k) % k
+Can't use sliding window when array has negatives
+
+
+Hashing
+1.Two sum
+
+Is it a PAIR (2 elements)?
+├── Sorted array → Two Pointers
+└── Unsorted array → HashMap
+
+Is it a SUBARRAY (contiguous)?
+├── Fixed size given → Fixed Sliding Window
+├── Condition based, all positive → Variable Sliding Window
+└── Negative numbers + sum=k → Prefix Sum + HashMap
+
+Binary search o(nlogn)
+1.search insert position
+2.koko
+3.capacity of ship
+4.split array largest sum
+5.Agreesive cow
+6.33-nums = [3,4,5,1,2]// l=0, r-n-1;//if(nums[start]<=nums[mid]){ //left is sorted- start<=tarhet<=mid// else //right is sorted---mid<=target<=end
+Search target=1 in rotated sorted array.
+Return index.
+7.162. Find Peak Element
+
+Recursion
+1.Permutation
+2.All possible Subset 
+//Notice the pattern difference:
+Permutations — loop from 0, skip used elements, add to result only when size == n
+Subsets — loop from start, pass i+1, add to result at every step//
+3.combination sum
+4.generate paranthesis
+5.Palindrom partition
+6.Letter combination of phone number
+
+stack/queue
+MIn stack (implement stack)
+1.valid parathesis
+2.Daily Temperature
+3.Next greater/smaller ele
+4.implement queue using stack
+5.Implement Stack using Queue
+6.Largest Rectangle in Histogram 
+7.Number of Recent Calls-->queue
+8.32. Longest Valid Parentheses// start push -1 to stack// if "(" push i to stack //else- pop stack if stack is empty then put ")" index i else find max len=i-stack peek
+9.2390. Removing Stars From a String
+10.1047. Remove All Adjacent Duplicates In String
+
+Key patterns:
+Matching brackets → Stack
+Track min/max with history → Two Stacks
+Next greater/smaller element → Monotonic Stack
+
+LinkedList
+1.reverse linked list->3 pointers prev,curr,next and its a 4 step process
+2.merge 2 sorted list-> need 4 pointers , t1,t2,dummy,temp.If t1.val<t2.val make temp.next points to t1 , them make temp equals t1 then move t1 to t1.next
+3.Detect linked list(slow and fast pointer) slow moves by 1 and fast moves by 2. There will be one point when s1==f1, that detects cycle
+same as find start node where they met just diff is again make s1 point to head , then run loop when they are not equal and move s1 by 1 and f1 also to 1. At last they will point to node where they met. return s1 or f1
+4.remove cycle same as detect cycle just add prev pointer that store f1 and after loop ,make prev to null
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode s1=head;
+        ListNode f1=head;
+        boolean isCycle=false;
+        while(f1!=null && f1.next!=null){
+            s1=s1.next;
+            f1=f1.next.next;
+            if(s1==f1){
+                isCycle=true;
+                break;
+            }
+        }
+        if(!isCycle){
+            return null;
+        }
+        s1=head;
+        ListNode prev=null;
+        while(s1!=f1){
+            s1=s1.next;
+            prev=f1;// prev store prev old value before it move to next
+            f1=f1.next;
+        }
+        prev.next=null; // remove cycle
+        return s1;
+        
+    }
+}
+5.142. Linked List Cycle II
+6.19. Remove Nth Node From End of List// using two pinter//take dummy pointer make l point to dummy// point r to k. Now move l and r by 1 such that diff btwn them is k// now point l.next=l.next.next // return dummy.next
+7.234. Palindrome Linked List
+8.876. Middle of the Linked List
+
+Tree
+
+Define the TreeNode class.
+Create a method (e.g., levelOrder(TreeNode root)) that returns a List<Integer>.
+Use a Queue<TreeNode> for BFS.
+Create a method, e.g.,
+public List<Integer> levelOrder(TreeNode root)
+
+Inside the method:
+Create an empty result list: List<Integer> result = new ArrayList<>();
+If root is null, return the result list immediately.
+Create a queue:
+Queue<TreeNode> queue = new LinkedList<>();
+Add the root node to the queue.
+While the queue is not empty:
+Remove the front node: TreeNode node = queue.poll();
+Add node.val to the result list.
+If node.left is not null, add it to the queue.
+If node.right is not null, add it to the queue.
+After the loop, return the result list.
+
+1.Binary Tree Level Order Traversal 102- Trick //int levelSize = queue.size();
+2.107. Binary Tree Level Order Traversal II // same as 1st just last use Collection.reverse(result) to reverse// medium
+2.104.maximum depth of binary tree  1+Math.max(maxDepth(root.left),maxDepth(root.right));// BFS gives o(n2)
+3.226.Invert binary tree- swap left and right node
+4.100.same tree 
+dfs-return (isSameTree(p.left, q.left) && isSameTree(p.right,q.right)); // not continue in if condtion
+bfs- continue if condition//  offering both trees' nodes together in same queue and comparing in pairs! ✅
+
+5.572 — Subtree of Another Tree- use same tree-100 
+6.LCA 235 is specifically a BST — values follow left < parent < right rule.// Medium
+Both p,q < root → go left
+Both p,q > root → go right
+Otherwise → root is LCA
+7.110. Balanced Binary Tree -// use 104 to solve this 
+8. 543. Diameter of Binary Tree- //take help of 104 //len of diameter= left height+right height //to avoid o(n2) we can calculate maxdiam- max(maxdiameter,left+right) while calucuting height
+
+9.662- Maximum Width of Binary Tree// Medium- 
+//use 2 queue to store node and indx. Using BFS level order we can traverse level wise node.
+// r-l+1 gives width if(i==0){
+                first=indx;
+             }
+             if(i==size-1){
+                last=indx;
+             }
+//Left child index = parent_index * 2
+Right child index = parent_index * 2 + 1
+Width at each level = last_index - first_index + 1
+
+10.124. Binary Tree Maximum Path Sum// Hard
+Same structure as LC 543 (Diameter) — DFS, global variable, return height-like value to parent
+Ignore negative paths — Math.max(dfs(child), 0) — never include negative subtree
+Initialize to Integer.MIN_VALUE — not 0, because all nodes could be negative!
+
+11.103. Binary Tree Zigzag Level Order Traversal//Maintain a boolean flag leftToRight = true.//For right to left, just add to front of list:  list.add(0, node.val);// end add list to result and // make flag leftToright=!leftToright
+
+Core formula:
+path through node = left + right + node.val
+return to parent = node.val + max(left, right)  // can only extend one side!
+
+11.⚠️ LC 199 — Right Side View (frequently asked at Adobe)
+//for each level, just take the last node//if(i==levelSize-1){
+                   result.add(node.val);
+                }
+12.⚠️ LC 98 — Validate BST (frequently asked at Oracle)
+Not just immediate children — entire left subtree must be < root, entire right subtree must be > root
+Pass boundaries down — validate(node, min, max)
+
+Going left → max = current node
+Going right → min = current node
+
+
+Use TreeNode as boundary (not long) — avoids integer overflow, check min!=null and max!=null before comparing
+
+Core insight:
+
+Every node must satisfy min < node.val < max where boundaries are inherited from ancestors!
+return helper(root.left,min,root) && helper(root.right,root,max);
+13.230. Kth Smallest Element in a BST// inorder traversal gives node in sorted orer// lrft->root->right// maintain global var preorder=0// for left, preorder++, if(preorder==k) return root.val, for right
+
+Heap-O(log n) — heap insertion/deletion
+1.215. Kth Largest Element in an Array
+//Why Min Heap? — Because we want to kick out smaller elements and keep larger ones. Min Heap always shows the smallest of the k largest — which IS the kth largest!
+Algorithm:
+
+Push element to heap
+If heap size > k → poll() (remove smallest)
+At end → peek() = kth largest
+
+2.1046. Last Stone Weight
+3.347. Top K Frequent Elements// PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[1] - b[1]);// incesding order // if maxheap TC- o(n)+T(logT)// so min heap TC- o(n)+T(logk)
+4.973. K Closest Points to Origin// PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> (b[0]*b[0]+b[1]*b[1]) - (a[0]*a[0]+a[1]*a[1]));//int[][] result = new int[k][2];
+
+5.295. Find Median from Data Stream// maintain 2 heap left max heap and right min heap// //always maintain left max heap size one > rihght min heap or both size equal
+
+greedy
+1.455. Assign Cookies- //sort bot array and assign cookies//two poninter when g[l]<=s[r] r++;// l will always fomes forward return r;
+2.763. Partition Labels- //two pinter start, end//find last index of ele. //Expand partition end as you find characters with later last occurrence by finding max end end=Math.max(end,endInx[s.charAt(i)-'a']);//When current index i == partition end → partition complete! than make start =i+1;
+3.135. Candy-//Two rules:
+
+Every child gets at least 1 candy// Arrays.fill(canday,1)
+Higher rating than neighbor → more candy than that neighbor
+
+Greedy approach — two passes:
+
+Left to right — if rating[i] > rating[i-1] → candy[i] = candy[i-1] + 1
+Right to left — if rating[i] > rating[i+1] → candy[i] = max(candy[i], candy[i+1] + 1)
+sum all candy and return
+4.55. Jump Game-// finalInd= arry length-1// loop start from n-2 start from last indx and check its curr indx + arr[i]>= finalIndx than update finalindx=indx than return finalIndx==0 
+5.45. Jump Game II//
+Track farthest reachable index farthest
+//int finalIndx=nums.length-1;
+        int coverage=0;
+        int lastjump=0;
+        int minjump=0;
+//find max coverage Math.max(coverage,i+nums[i]); // when i==lastIndx update lastIndx=coverage then jump++// check if coverage == finalIndx than return minjump
+
+
+Mock question
+1.189. Rotate Array.
+ int n=nums.length;
+        k=k%n;
+        if(k==0)
+        return;
+        reverse(nums,0,nums.length-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,nums.length-1);
+2. Boyers moore// find majority ele whose count >n/2
+int arr[]={3,2,3};
+        int n=arr.length;
+        int candidate=0;
+        int count=0;
+        for(int num:arr){
+            if(count==0){
+                candidate=num;
+            }
+            if(num==candidate){
+                count++;
+            }else{
+                count--;
+            }
+        }
+        count=0;
+        for(int num:arr){
+            if(num==candidate){
+              count++;
+            }
+        }
+        if(count>n/2){
+            return candidate;
+        }
+        return -1;
+    }
+    
+3.merge interval 56
+
+
+
+
+
+
+
