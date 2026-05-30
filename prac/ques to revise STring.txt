@@ -301,6 +301,9 @@ Track farthest reachable index farthest
         int minjump=0;
 //find max coverage Math.max(coverage,i+nums[i]); // when i==lastIndx update lastIndx=coverage then jump++// check if coverage == finalIndx than return minjump
 
+DP
+70.Climbimg stairs
+
 
 Mock question
 1.189. Rotate Array.
