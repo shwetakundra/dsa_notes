@@ -114,6 +114,7 @@ Binary search o(nlogn)
 Search target=1 in rotated sorted array.
 Return index.
 7.162. Find Peak Element
+8.2187. Minimum Time to Complete Trips
 
 Recursion
 1.Permutation
